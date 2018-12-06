@@ -55,7 +55,7 @@ namespace folly {
  * }
  *
  * void move2(T * from, T * to) {
- *   memcpy(to, from, sizeof(T));
+ *   std::memcpy(to, from, sizeof(T));
  * }
  *
  * Most C++ types are relocatable; the ones that aren't would include
