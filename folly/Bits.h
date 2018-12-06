@@ -543,7 +543,7 @@ inline T loadUnaligned(const void* p) {
     return static_cast<const Unaligned<T>*>(p)->value;
   } else {
     T value;
-    memcpy_s(&value, p, sizeof(T));
+    std::memcpy(&value, p, sizeof(T));
     return value;
   }
 }
@@ -564,7 +564,7 @@ inline void storeUnaligned(void* p, T value) {
     folly::assume(p != nullptr);
     new (p) Unaligned<T>(value);
   } else {
-    memcpy_s(p, &value, sizeof(T));
+    std::memcpy(p, &value, sizeof(T));
   }
 }
 

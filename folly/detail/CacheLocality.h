@@ -177,7 +177,7 @@ struct HashingThreadId {
   static size_t get() {
     pthread_t pid = pthread_self();
     uint64_t id = 0;
-    memcpy_s(&id, &pid, std::min(sizeof(pid), sizeof(id)));
+    std::memcpy(&id, &pid, std::min(sizeof(pid), sizeof(id)));
     return hash::twang_32from64(id);
   }
 };

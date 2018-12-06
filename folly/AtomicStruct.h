@@ -52,13 +52,13 @@ class AtomicStruct {
     // we expect the compiler to optimize away the memcpy, but without
     // it we would violate strict aliasing rules
     Raw d = 0;
-    memcpy_s(&d, &v, sizeof(T));
+    std::memcpy(&d, &v, sizeof(T));
     return d;
   }
 
   static T decode(Raw d) noexcept {
     T v;
-    memcpy_s(&v, &d, sizeof(T));
+    std::memcpy(&v, &d, sizeof(T));
     return v;
   }
 

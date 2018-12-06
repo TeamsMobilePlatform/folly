@@ -143,7 +143,7 @@ size_t uintToBinary(char* buffer, size_t bufLen, Uint v) {
   for (; v; v >>= 7, v >>= 1) {
     auto b = v & 0xff;
     bufLen -= 8;
-    memcpy_s(buffer + bufLen, &(repr[b][0]), 8);
+    std::memcpy(buffer + bufLen, &(repr[b][0]), 8);
   }
   while (buffer[bufLen] == '0') {
     ++bufLen;

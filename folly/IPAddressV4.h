@@ -190,7 +190,7 @@ class IPAddressV4 {
     sockaddr_in addr;
     memset(&addr, 0, sizeof(sockaddr_in));
     addr.sin_family = AF_INET;
-    memcpy_s(&addr.sin_addr, &addr_.inAddr_, sizeof(in_addr));
+    std::memcpy(&addr.sin_addr, &addr_.inAddr_, sizeof(in_addr));
     return addr;
   }
 

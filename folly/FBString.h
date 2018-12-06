@@ -171,7 +171,7 @@ inline void podCopy(const Pod* b, const Pod* e, Pod* d) {
   FBSTRING_ASSERT(d != nullptr);
   FBSTRING_ASSERT(e >= b);
   FBSTRING_ASSERT(d >= e || d + (e - b) <= b);
-  memcpy_s(d, b, (e - b) * sizeof(Pod));
+  std::memcpy(d, b, (e - b) * sizeof(Pod));
 }
 
 /*

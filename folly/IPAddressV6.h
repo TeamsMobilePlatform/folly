@@ -250,7 +250,7 @@ class IPAddressV6 {
     memset(&addr, 0, sizeof(sockaddr_in6));
     addr.sin6_family = AF_INET6;
     addr.sin6_scope_id = scope_;
-    memcpy_s(&addr.sin6_addr, &addr_.in6Addr_, sizeof(in6_addr));
+    std::memcpy(&addr.sin6_addr, &addr_.in6Addr_, sizeof(in6_addr));
     return addr;
   }
 
