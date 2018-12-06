@@ -555,7 +555,7 @@ class GroupVarintDecoder {
       // Base::kMaxSize - 1 bytes readable *after* the end, otherwise we'll copy
       // into a temporary buffer.
       if (limit_ - p_ < Base::kMaxSize) {
-        memcpy(tmp_, p_, rem);
+        memcpy_s(tmp_, p_, rem);
         p_ = tmp_;
         end_ = p_ + rem;
         limit_ = tmp_ + sizeof(tmp_);

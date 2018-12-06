@@ -380,7 +380,7 @@ class SocketAddress {
     if (!external_) {
       return storage_.addr.toSockaddrStorage(addr, htons(port_));
     } else {
-      memcpy(addr, storage_.un.addr, sizeof(*storage_.un.addr));
+      memcpy_s(addr, storage_.un.addr, sizeof(*storage_.un.addr));
       return storage_.un.len;
     }
   }
@@ -556,7 +556,7 @@ class SocketAddress {
       addr = new sockaddr_un;
       magic = kMagic;
       len = other.len;
-      memcpy(addr, other.addr, len);
+      memcpy_s(addr, other.addr, len);
       // Fill the rest with 0s, just for safety
       memset(reinterpret_cast<char*>(addr) + len, 0,
              sizeof(struct sockaddr_un) - len);
@@ -564,7 +564,7 @@ class SocketAddress {
     void copy(const ExternalUnixAddr &other) {
       CHECK(magic == kMagic);
       len = other.len;
-      memcpy(addr, other.addr, len);
+      memcpy_s(addr, other.addr, len);
     }
     void free() {
       CHECK(magic == kMagic);

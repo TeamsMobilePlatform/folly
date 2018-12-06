@@ -96,7 +96,7 @@ struct DemangleBuf {
 void demangleCallback(const char* str, size_t size, void* p) {
   DemangleBuf* buf = static_cast<DemangleBuf*>(p);
   size_t n = std::min(buf->remaining, size);
-  memcpy(buf->dest, str, n);
+  memcpy_s(buf->dest, str, n);
   buf->dest += n;
   buf->remaining -= n;
   buf->total += size;
@@ -110,7 +110,7 @@ size_t demangle(const char* name, char* out, size_t outSize) {
   if (mangledLen > FOLLY_DEMANGLE_MAX_SYMBOL_SIZE) {
     if (outSize) {
       size_t n = std::min(mangledLen, outSize - 1);
-      memcpy(out, name, n);
+      memcpy_s(out, name, n);
       out[n] = '\0';
     }
     return mangledLen;
@@ -153,7 +153,7 @@ size_t strlcpy(char* dest, const char* const src, size_t size) {
   size_t len = strlen(src);
   if (size != 0) {
     size_t n = std::min(len, size - 1);  // always null terminate!
-    memcpy(dest, src, n);
+    memcpy_s(dest, src, n);
     dest[n] = '\0';
   }
   return len;

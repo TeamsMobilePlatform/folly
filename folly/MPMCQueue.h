@@ -1344,7 +1344,7 @@ struct SingleElementQueue {
                    T&& goner,
                    ImplByRelocation) noexcept {
     sequencer_.waitForTurn(turn * 2, spinCutoff, updateSpinCutoff);
-    memcpy(&contents_, &goner, sizeof(T));
+    memcpy_s(&contents_, &goner, sizeof(T));
     sequencer_.completeTurn(turn * 2);
     new (&goner) T();
   }
@@ -1362,7 +1362,7 @@ struct SingleElementQueue {
       // unlikely, but if we don't complete our turn the queue will die
     }
     sequencer_.waitForTurn(turn * 2 + 1, spinCutoff, updateSpinCutoff);
-    memcpy(&elem, &contents_, sizeof(T));
+    memcpy_s(&elem, &contents_, sizeof(T));
     sequencer_.completeTurn(turn * 2 + 1);
   }
 

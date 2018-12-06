@@ -195,7 +195,7 @@ class MacAddress {
 
  private:
   explicit MacAddress(uint64_t valueNBO) {
-    memcpy(&bytes_, &valueNBO, 8);
+    memcpy_s(&bytes_, &valueNBO, 8);
     // Set the pad bytes to 0.
     // This allows us to easily compare two MacAddresses,
     // without having to worry about differences in the padding.
@@ -215,7 +215,7 @@ class MacAddress {
 
   uint64_t packedBytes() const {
     uint64_t u64;
-    memcpy(&u64, bytes_, 8);
+    memcpy_s(&u64, bytes_, 8);
     return u64;
   }
 };
